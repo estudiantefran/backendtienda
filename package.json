@@ -1,0 +1,35 @@
+{
+  "name": "tienda virtual chocolate pilar de oro",
+  "version": "1.0.0",
+  "description": "proyecto de tienda virtual cholate pilar de oro",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "javascript",
+    "mongodb",
+    "html",
+    "css",
+    "bootstrap"
+  ],
+  "author": "francisco navarro ramos",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.9.0",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.7.4",
+    "nodemon": "^3.1.14"
+  }
+}
