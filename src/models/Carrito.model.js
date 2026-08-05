@@ -1,10 +1,12 @@
+
 import mongoose from "mongoose";
 
 const carritoSchema = new mongoose.Schema({
 
     usuario:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Usuario"
+        ref:"Usuario",
+        required:true
     },
 
     productos:[
@@ -12,16 +14,19 @@ const carritoSchema = new mongoose.Schema({
 
             producto:{
                 type:mongoose.Schema.Types.ObjectId,
-                ref:"Producto"
+                ref:"Producto",
+                required:true
             },
 
             cantidad:{
                 type:Number,
-                default:1
+                default:1,
+                min:1
             },
 
             precio:{
-                type:Number
+                type:Number,
+                min:0
             }
 
         }
@@ -29,9 +34,10 @@ const carritoSchema = new mongoose.Schema({
 
     total:{
         type:Number,
-        default:0
+        default:0,
+        min:0
     }
 
 },{timestamps:true});
 
-export default mongoose.model("Carrito",carritoSchema);
+export const CarritoModel= mongoose.model("Carrito",carritoSchema);

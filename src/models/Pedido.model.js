@@ -4,7 +4,8 @@ const pedidoSchema = new mongoose.Schema({
 
     usuario:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Usuario"
+        ref:"Usuario",
+        required:true
     },
 
     productos:[
@@ -12,24 +13,46 @@ const pedidoSchema = new mongoose.Schema({
 
             producto:{
                 type:mongoose.Schema.Types.ObjectId,
-                ref:"Producto"
+                ref:"Producto",
+                required:true
             },
 
-            cantidad:Number,
+            cantidad:{
+                type:Number,
+                required:true,
+                min:1
+            },
 
-            precio:Number
+            precio:{
+                type:Number,
+                required:true,
+                min:0
+            }
 
         }
     ],
 
-    subtotal:Number,
+    subtotal:{
+        type:Number,
+        required:true,
+        min:0
+    },
 
-    envio:Number,
+    envio:{
+        type:Number,
+        default:0,
+        min:0
+    },
 
-    total:Number,
+    total:{
+        type:Number,
+        required:true,
+        min:0
+    },
 
     metodoPago:{
-        type:String
+        type:String,
+        trim:true
     },
 
     estado:{
@@ -46,4 +69,11 @@ const pedidoSchema = new mongoose.Schema({
 
 },{timestamps:true});
 
-export default mongoose.model("Pedido",pedidoSchema);
+pedidoSchema.pre("validate", function(next){
+    if (!this.productos || this.productos.length === 0) {
+        this.invalidate("productos", "Un pedido debe tener al menos un producto");
+    }
+    next();
+});
+
+export const PedidoModel= mongoose.model("Pedido",pedidoSchema);

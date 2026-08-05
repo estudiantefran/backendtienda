@@ -5,15 +5,18 @@ const categoriaSchema = new mongoose.Schema({
     nombre:{
         type:String,
         required:true,
-        unique:true
+        unique:true,
+        trim:true
     },
 
     descripcion:{
-        type:String
+        type:String,
+        trim:true
     },
 
     imagen:{
-        type:String
+        type:String,
+        trim:true
     },
 
     estado:{
@@ -23,4 +26,4 @@ const categoriaSchema = new mongoose.Schema({
 
 },{timestamps:true});
 
-export default mongoose.model("Categoria",categoriaSchema);
+export const CategoriaModel= mongoose.model("Categoria",categoriaSchema);

@@ -4,7 +4,8 @@ const favoritoSchema = new mongoose.Schema({
 
     usuario:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Usuario"
+        ref:"Usuario",
+        required:true
     },
 
     productos:[
@@ -16,4 +17,4 @@ const favoritoSchema = new mongoose.Schema({
 
 },{timestamps:true});
 
-export default mongoose.model("Favorito",favoritoSchema);
+export const FavoritoModel= mongoose.model("Favorito",favoritoSchema);

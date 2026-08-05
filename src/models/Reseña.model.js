@@ -4,24 +4,30 @@ const resenaSchema = new mongoose.Schema({
 
     usuario:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Usuario"
+        ref:"Usuario",
+        required:true
     },
 
     producto:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Producto"
+        ref:"Producto",
+        required:true
     },
 
     calificacion:{
         type:Number,
+        required:true,
         min:1,
         max:5
     },
 
     comentario:{
-        type:String
+        type:String,
+        trim:true
     }
 
 },{timestamps:true});
 
-export default mongoose.model("Resena",resenaSchema);
+resenaSchema.index({ usuario: 1, producto: 1 }, { unique: true });
+
+export const ReseñaModel=mongoose.model("Resena",resenaSchema);

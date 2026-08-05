@@ -4,15 +4,29 @@ const inventarioSchema = new mongoose.Schema({
 
     producto:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Producto"
+        ref:"Producto",
+        required:true,
+        unique:true
     },
 
-    stockActual:Number,
+    stockActual:{
+        type:Number,
+        default:0,
+        min:0
+    },
 
-    stockMinimo:Number,
+    stockMinimo:{
+        type:Number,
+        default:0,
+        min:0
+    },
 
-    stockMaximo:Number
+    stockMaximo:{
+        type:Number,
+        default:0,
+        min:0
+    }
 
 },{timestamps:true});
 
-export default mongoose.model("Inventario",inventarioSchema);
+export const InventarioModel=mongoose.model("Inventario",inventarioSchema);
