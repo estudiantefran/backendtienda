@@ -1,15 +1,21 @@
 import mongoose from "mongoose";
-import dns from 'node:dns';
-dns.setServers(['8.8.8.8','1.1.1.1']);
 
-export async function conectionMongo(){
-        try{
-            console.log("intentado conectar a:", process.env.MONGO_URI);
-            await mongoose.connect(process.env.MONGO_URI, {
-             ServerSelectionTimeoutMs:1000
-                });
-                 console.log("conexion exitosa a la bases de datos");
-            }catch(error){
-        console.log("error al conectarse a la bases de datos "+error);
-                        }
+export async function conectionMongo() {
+    try {
+        if (!process.env.MONGO_URI) {
+            throw new Error('MONGO_URI no está definida en el archivo .env');
+        }
+
+        const uriOculta = process.env.MONGO_URI.replace(/\/\/([^:]+):([^@]+)@/, '///***:***@');
+        console.log('intentado conectar a:', uriOculta);
+
+        await mongoose.connect(process.env.MONGO_URI, {
+            serverSelectionTimeoutMS: 5000,
+            retryWrites: true
+        });
+
+        console.log('conexion exitosa a la bases de datos');
+    } catch (error) {
+        console.error('error al conectarse a la bases de datos:', error.message || error);
     }
+}

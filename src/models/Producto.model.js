@@ -44,6 +44,24 @@ const productoSchema = new mongoose.Schema({
         }
     ],
 
+    stockActual:{
+        type:Number,
+        default:0,
+        min:0
+    },
+
+    stockMinimo:{
+        type:Number,
+        default:0,
+        min:0
+    },
+
+    stockMaximo:{
+        type:Number,
+        default:0,
+        min:0
+    },
+
     categoria:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Categoria",

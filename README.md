@@ -1,6 +1,10 @@
 # Tienda Virtual Chocolate Pilar de Oro
 
-Backend del proyecto de tienda virtual para la marca Chocolate Pilar de Oro. Este servicio está desarrollado con Node.js, Express y MongoDB, y proporciona la base para gestionar productos, usuarios, pedidos y otras operaciones de comercio electrónico.
+Este proyecto consiste en el desarrollo de una tienda virtual para la comercialización de chocolates artesanales, donde los clientes podrán conocer los productos disponibles, sus diferentes presentaciones y realizar compras en línea.
+
+La plataforma busca facilitar y mejorar el proceso de comercialización mediante un catálogo digital y funcionalidades que permitan gestionar los productos y pedidos de manera organizada.
+
+Como objetivo principal, se busca automatizar el proceso de venta, facilitando tanto la experiencia de compra de los clientes como la gestión de los pedidos por parte del negocio.
 
 ## Descripción del proyecto
 
